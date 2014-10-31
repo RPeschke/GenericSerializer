@@ -6,6 +6,44 @@
 
 
 
+//////////////////////////////////////////////////////////////////////////
+// Template declarations											////// 
+//////////////////////////////////////////////////////////////////////////
+
+
+
+template <typename T>
+serilize_data_t  helper_START_TAG();
+
+template <typename T>
+void helper_serilize(const std::vector<T>& x, SerilizeVector& outputVector);
+
+
+template <typename T>
+void helper_serilize(const std::pair< const T*, const size_t>& x, SerilizeVector& outputVector);
+
+
+
+template <typename T>
+void helper_serilize(const std::pair< T*, size_t>& x, SerilizeVector& outputVector);
+
+template <typename T>
+void helper_serilize(const std::pair<const T*, size_t>& x, SerilizeVector& outputVector);
+
+
+template <typename T>
+void helper_serilize(const std::pair< T*, const size_t>& x, SerilizeVector& outputVector);
+
+template <typename Iterator_t>
+void helper_serilize_bool(Iterator_t begin_it, size_t size, SerilizeVector& outputVector);
+
+template <typename IntType>
+void helper_serilize_intTypes(IntType in_data, SerilizeVector& outputVector);
+
+
+//////////////////////////////////////////////////////////////////////////
+// Template Definitions												//////
+//////////////////////////////////////////////////////////////////////////
 
 template <typename T>
 serilize_data_t  helper_START_TAG(){
@@ -137,37 +175,6 @@ void helper_serilize(int data_, SerilizeVector& outputVector){
 
 	helper_serilize_intTypes(data_, outputVector);
 }
-
-
-
-// template <typename T>
-// serilize_data_t helper_size(T& t){
-// 	return static_cast<serilize_data_t>(sizeof(t)*CHAR_BIT);
-// };
-// 
-// template <typename T>
-// serilize_data_t helper_size(const std::vector<T>& x){
-// 
-// 	serilize_data_t sum = 0;
-// 	for (auto&e : x)
-// 	{
-// 		sum += helper_size(e);
-// 	}
-// 
-// 	return sum;
-// };
-// 
-// 
-// serilize_data_t helper_size(const std::vector<bool>& x){
-// 
-// 
-// 
-// 	return x.size();
-// };
-// 
-// serilize_data_t helper_size(const char* t){
-// 	return static_cast<serilize_data_t>(strlen(t)*sizeof(char)*CHAR_BIT);
-// };
 
 
 #endif // serilize_helpers_h__
