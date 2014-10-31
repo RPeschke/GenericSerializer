@@ -41,6 +41,18 @@ template <typename IntType>
 void helper_serilize_intTypes(IntType in_data, SerilizeVector& outputVector);
 
 
+template <>
+void helper_serilize(const std::pair< const bool*, const size_t>& x, SerilizeVector& outputVector);
+
+template <>
+void helper_serilize(const std::vector<bool>& t, SerilizeVector& outputVector);
+
+
+void helper_serilize(const char* data_, SerilizeVector& outputVector);
+
+void helper_serilize(int data_, SerilizeVector& outputVector);
+
+
 //////////////////////////////////////////////////////////////////////////
 // Template Definitions												//////
 //////////////////////////////////////////////////////////////////////////
@@ -150,25 +162,26 @@ void helper_serilize_intTypes(IntType in_data, SerilizeVector& outputVector){
 
 }
 
+template <>
 void helper_serilize(const std::pair< const bool*, const size_t>& x, SerilizeVector& outputVector){
 
 	helper_serilize_bool(x.first, x.second, outputVector);
 	
 }
 
-
+template <>
 void helper_serilize(const std::vector<bool>& t, SerilizeVector& outputVector){
-
-
-
+	
 	helper_serilize_bool(t.begin(), t.size(), outputVector);
 }
+
 
 void helper_serilize(const char* data_, SerilizeVector& outputVector){
 
 	helper_serilize(std::make_pair(data_, strlen(data_)), outputVector);
 
 }
+
 void helper_serilize(int data_, SerilizeVector& outputVector){
 
 
