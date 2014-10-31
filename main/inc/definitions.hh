@@ -12,6 +12,10 @@
 #define  DATA_START_TAG   0xFFFFFFFF
 #define CONTAINER_START_TAG 0xFFFFFFFE
 
+#ifndef WIN32
+  #define  CHAR_BIT 8
+#endif
+
 typedef uint64_t serilize_data_t;
 typedef std::vector<serilize_data_t> SerilizeVector;
 #define  UNIT_BYTES  sizeof(serilize_data_t)
