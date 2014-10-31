@@ -52,7 +52,7 @@ serilize_data_t  helper_START_TAG(){
 
 template <typename T>
 void helper_serilize(const std::vector<T>& x, SerilizeVector& outputVector){
-	helper_serilize(make_pair(&x[0], x.size()), outputVector);
+	helper_serilize(std::make_pair(&x[0], x.size()), outputVector);
 }
 
 
